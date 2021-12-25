@@ -24,4 +24,15 @@ class Site extends CI_Controller
             'recently_added' => $recently_added,
         ]);
     }
+
+    public function search()
+    {
+        $q = $this->input->get('q');
+        // dd($q);
+        $res = $this->movie->search($q);
+        $this->loadView('site/search', [
+            'q'	=> $q,
+            'res' => $res,
+        ]);
+    }
 }

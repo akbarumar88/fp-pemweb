@@ -15,7 +15,7 @@ class MMovie extends CI_Model
     {
         $movies = $this
             ->db
-            ->query("SELECT id, judul, sinopsis, tglrilis, durasi FROM film")
+            ->query("SELECT * FROM film WHERE judul LIKE '%$q%'")
             ->result_array();
         // dd($movies);
         return $movies;
