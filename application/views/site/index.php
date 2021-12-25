@@ -4,7 +4,7 @@
     <?php foreach ($latest_aired as $movie) :  ?>
         <div class="col px-2 mb-4">
 
-            <a href="">
+            <a href="<?= base_url('site/movie/'.$movie['id']) ?>">
                 <div class="thumbnail-wrap">
                     <!-- Durasi -->
                     <div class="durasi py-1 px-2">
@@ -36,7 +36,7 @@
     <?php foreach ($recently_added as $movie) :  ?>
         <div class="col px-2 mb-4">
 
-            <a href="">
+            <a href="<?= base_url('site/movie/'.$movie['id']) ?>">
                 <div class="thumbnail-wrap">
                     <!-- Durasi -->
                     <div class="durasi py-1 px-2">

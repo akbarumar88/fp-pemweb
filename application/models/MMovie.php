@@ -43,4 +43,19 @@ class MMovie extends CI_Model
         // dd($movies);
         return $movies;
     }
+
+    public function find($id)
+    {
+        $movie = $this
+            ->db
+            ->query("SELECT * FROM film WHERE id = $id")
+            ->row_array();
+        $kualitas = $this
+            ->db
+            ->query("SELECT * FROM film_kualitas where idfilm = $id")
+            ->result_array();
+        $movie['kualitas'] = $kualitas;
+        // dd($movie);
+        return $movie;
+    }
 }

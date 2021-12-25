@@ -35,4 +35,18 @@ class Site extends CI_Controller
             'res' => $res,
         ]);
     }
+
+    /**
+     * Halaman Detail Film
+     */
+    public function movie($id)
+    {
+        # code...
+        // dd($q);
+        $res = $this->movie->find($id);
+        // dd($res);
+        $this->loadView('site/movie', [
+            'movie'	=> $res,
+        ]);
+    }
 }
