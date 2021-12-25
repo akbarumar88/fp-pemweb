@@ -14,10 +14,10 @@ $tglRilis = $tglrilisObj->format("M d, Y");
 
 <!-- Kualitas Film -->
 <div class="dropdown mt-2 mb-2">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownKualitas" data-toggle="dropdown" aria-expanded="false">
         <?= $movie['kualitas'][0]['kualitas'] ?>
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <div class="dropdown-menu" aria-labelledby="dropdownKualitas">
         <?php foreach($movie['kualitas'] as $qu): ?>
             <button class="dropdown-item" data-value="<?= $qu['url'] ?>" type="button"><?= $qu['kualitas'] ?></button>
         <?php endforeach; ?>

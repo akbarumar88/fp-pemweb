@@ -3,8 +3,8 @@ $(document).ready(function(){
 
     $(".dropdown-menu button").click(function(){
 
-        $(".dropdown-toggle").text($(this).text());
-        $(".dropdown-toggle").val($(this).text());
+        $("#dropdownKualitas").text($(this).text());
+        $("#dropdownKualitas").val($(this).text());
 
         // Ganti url Video Player
         let newUrl = $(this).attr('data-value')
