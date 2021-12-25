@@ -17,9 +17,11 @@ class Site extends CI_Controller
 
     public function index()
     {
-        $movies = $this->movie->search();
+        $latest_aired = $this->movie->latest_aired();
+        $recently_added = $this->movie->recently_added();
         $this->loadView('site/index', [
-            'movies' => $movies
+            'latest_aired' => $latest_aired,
+            'recently_added' => $recently_added,
         ]);
     }
 }

@@ -20,4 +20,27 @@ class MMovie extends CI_Model
         // dd($movies);
         return $movies;
     }
+
+    /**
+     * @param
+     */
+    public function latest_aired()
+    {
+        $movies = $this
+            ->db
+            ->query("SELECT * FROM film ORDER BY tglrilis DESC")
+            ->result_array();
+        // dd($movies);
+        return $movies;
+    }
+
+    public function recently_added()
+    {
+        $movies = $this
+            ->db
+            ->query("SELECT * FROM film ORDER BY id DESC")
+            ->result_array();
+        // dd($movies);
+        return $movies;
+    }
 }
