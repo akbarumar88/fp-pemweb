@@ -98,7 +98,7 @@ class MMovie extends CI_Model
         // Mengambil data film berdasarkan genrenya.
         $movieByGenre = $this
             ->db
-            ->select('DISTINCT f.id, f.*')
+            ->select('f.*')
             ->from('film_genre fg')
             ->join('film f', 'fg.idfilm=f.id')
             ->where_in('idgenre', $idgenres)
@@ -106,5 +106,14 @@ class MMovie extends CI_Model
             ->result_array();
         // dd($movieByGenre);
         return ($movieByGenre);
+    }
+
+    public function genres()
+    {
+        $genres = $this
+            ->db
+            ->get('genre')
+            ->result_array();
+        return $genres;
     }
 }

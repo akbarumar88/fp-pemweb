@@ -6,11 +6,16 @@ class Site extends CI_Controller
     {
         parent::__construct();
         $this->load->model('MMovie', 'movie');
+        $this->load->model('MGenre', 'genre');
     }
 
     private function loadView($mainView, $data=[])
     {
-        $this->load->view('site/header');
+        $genres = $this->movie->genres();
+        // dd($genres);
+        $this->load->view('site/header', [
+            'genres' => $genres
+        ]);
         $this->load->view($mainView, $data);
         $this->load->view('site/footer');
     }
@@ -49,6 +54,17 @@ class Site extends CI_Controller
         $this->loadView('site/movie', [
             'movie'	=> $res,
             'related_movies' => $related_movies,
+        ]);
+    }
+
+    public function search_genre($idgenre)
+    {
+        $genre = $this->genre->find($idgenre);
+        // dd($genre);
+        $res = $this->movie->findByGenre([$idgenre]);
+        $this->loadView('site/search_genre', [
+            'genre' => $genre['genre'],
+            'res' => $res,
         ]);
     }
 }

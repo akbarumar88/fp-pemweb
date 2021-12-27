@@ -23,15 +23,16 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-                
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Genre</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="" style="display:flex;flex-wrap:wrap;width:600px">
+                            <?php foreach ($genres as $genre) : ?>
+                                <a style="width:25%" class="dropdown-item" href="<?= base_url('site/search_genre/'.$genre['id']) ?>"><?= $genre['genre'] ?></a>
+                            <?php endforeach; ?>
+                        </div>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
                     </div>
                 </li>
 
