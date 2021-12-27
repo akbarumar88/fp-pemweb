@@ -2,7 +2,7 @@
 
 <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2">
     <?php foreach ($latest_aired as $movie) :  ?>
-        <div class="col px-2 mb-4">
+        <div class="col pr-0 mb-4">
 
             <a href="<?= base_url('site/movie/'.$movie['id']) ?>">
                 <div class="thumbnail-wrap">
@@ -34,7 +34,7 @@
 
 <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2">
     <?php foreach ($recently_added as $movie) :  ?>
-        <div class="col px-2 mb-4">
+        <div class="col pr-0 mb-4">
 
             <a href="<?= base_url('site/movie/'.$movie['id']) ?>">
                 <div class="thumbnail-wrap">

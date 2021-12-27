@@ -121,3 +121,10 @@ function limit($string, $word_limit, $suffix = '...')
     $return .= $word_limit >= count($words) ? '' : $suffix ;
     return $return; //DIgabung kembali sebanyak limitnya
 }
+
+function formatDate($date, $format)
+{
+    $tglObj = new DateTime($date);
+    $tglFormatted = $tglObj->format($format);
+    return $tglFormatted;
+}

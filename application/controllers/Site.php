@@ -42,11 +42,13 @@ class Site extends CI_Controller
     public function movie($id)
     {
         # code...
-        // dd($q);
         $res = $this->movie->find($id);
+        // dd($res);
+        $related_movies = $this->movie->related($id);
         // dd($res);
         $this->loadView('site/movie', [
             'movie'	=> $res,
+            'related_movies' => $related_movies,
         ]);
     }
 }

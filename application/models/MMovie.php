@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-class MMovie extends CI_Model 
+class MMovie extends CI_Model
 {
 
     function __construct()
@@ -11,7 +11,7 @@ class MMovie extends CI_Model
     /**
      * @param
      */
-    public function search($q='')
+    public function search($q = '')
     {
         $movies = $this
             ->db
@@ -54,8 +54,57 @@ class MMovie extends CI_Model
             ->db
             ->query("SELECT * FROM film_kualitas where idfilm = $id")
             ->result_array();
+        $genre = $this
+            ->db
+            ->query("SELECT idgenre, g.genre from film_genre fg 
+                inner join genre g on fg.idgenre = g.id 
+                where idfilm = $id")
+            ->result_array();
         $movie['kualitas'] = $kualitas;
+        $movie['genre'] = $genre;
         // dd($movie);
         return $movie;
+    }
+
+    public function related($id)
+    {
+        // Mengambil data film terkait berdasarkan genrenya.
+        $genre = $this
+            ->db
+            ->query("SELECT idgenre, g.genre from film_genre fg 
+                inner join genre g on fg.idgenre = g.id 
+                where idfilm = $id")
+            ->result_array();
+        $idgenres = array_map(function ($genre) {
+            return $genre['idgenre'];
+        }, $genre);
+        // dd($idgenres);
+        $movieByGenre = $this
+            ->db
+            ->distinct()
+            ->select('f.*')
+            ->from('film_genre fg')
+            ->join('film f', 'fg.idfilm=f.id')
+            ->where_in('idgenre', $idgenres) //Mencari dengan genre terkait
+            ->where_not_in('f.id', [$id]) //Film saat ini tidak ikut ter-select
+            ->get()
+            ->result_array();
+        // dd($movieByGenre);
+        return ($movieByGenre);
+    }
+
+    public function findByGenre($idgenres)
+    {
+        // Mengambil data film berdasarkan genrenya.
+        $movieByGenre = $this
+            ->db
+            ->select('DISTINCT f.id, f.*')
+            ->from('film_genre fg')
+            ->join('film f', 'fg.idfilm=f.id')
+            ->where_in('idgenre', $idgenres)
+            ->get()
+            ->result_array();
+        // dd($movieByGenre);
+        return ($movieByGenre);
     }
 }
