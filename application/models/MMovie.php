@@ -98,6 +98,7 @@ class MMovie extends CI_Model
         // Mengambil data film berdasarkan genrenya.
         $movieByGenre = $this
             ->db
+            ->distinct()
             ->select('f.*')
             ->from('film_genre fg')
             ->join('film f', 'fg.idfilm=f.id')

@@ -53,7 +53,7 @@ $tglRilis = formatDate($movie['tglrilis'], "M d, Y");
             </div>
         </div>
         <?php foreach ($movie['genre'] as $genre) : ?>
-            <a href="#" class="badge badge-warning badge-pill py-2 px-3 mr-1 mb-2" style="font-size:14px"><?= $genre['genre'] ?></a>
+            <a href="<?= base_url('site/search_genre/'.$genre['idgenre']) ?>" class="badge badge-warning badge-pill py-2 px-3 mr-1 mb-2" style="font-size:14px"><?= $genre['genre'] ?></a>
         <?php endforeach; ?>
     </div>
 </div>
