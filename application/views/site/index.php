@@ -1,3 +1,5 @@
+<?php // dd($_SESSION) ?>
+
 <h3 class="mb-4">Film Terbaru</h3>
 
 <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2">

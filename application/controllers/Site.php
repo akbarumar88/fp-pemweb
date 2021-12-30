@@ -48,6 +48,12 @@ class Site extends CI_Controller
     {
         # code...
         $res = $this->movie->find($id);
+        // Melakukan pengecekan apakah user sudah login? untuk membatasi kualitas videonya.
+        if (!$this->session->has_userdata('id')) {
+            $res['kualitas'] = array_filter($res['kualitas'], function ($item) {
+                return $item['kualitas'] == '480p';
+            });
+        }
         // dd($res);
         $related_movies = $this->movie->related($id);
         // dd($res);

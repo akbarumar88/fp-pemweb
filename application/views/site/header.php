@@ -20,7 +20,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
 
@@ -36,13 +35,19 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Login</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Register</a>
-                </li>
+                <?php if (!$this->session->has_userdata('id')): ?>
+                    <li class="nav-item">
+                        <a href="<?= base_url('auth/login') ?>" class="nav-link">Login</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a href="<?= base_url('auth/register') ?>" class="nav-link">Register</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a href="<?= base_url('auth/logout') ?>" class="nav-link">Logout</a>
+                    </li>
+                <?php endif; ?>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="<?= base_url('site/search')  ?>">
                 <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" value="<?= $this->input->get('q') ?>" required>
