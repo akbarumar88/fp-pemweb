@@ -140,6 +140,13 @@ class MMovie extends CI_Model
         $this
             ->db
             ->insert_batch("film_genre", $data_genre);
+        // Insert data kualitas
+        $this
+            ->db
+            ->insert_batch("film_kualitas", [
+                ['idfilm' => $idfilm, 'kualitas' => '480p', 'url' => $data['link_sd']],
+                ['idfilm' => $idfilm, 'kualitas' => '720p', 'url' => $data['link_hd']],
+            ]);
         
         return $idfilm;
     }
@@ -169,6 +176,17 @@ class MMovie extends CI_Model
         $this
             ->db
             ->insert_batch("film_genre", $data_genre);
+        
+        // Hapus semua link film
+        $this->db->delete('film_kualitas', ['idfilm' => $idfilm]);
+        // Insert data kualitas
+        $this
+            ->db
+            ->insert_batch("film_kualitas", [
+                ['idfilm' => $idfilm, 'kualitas' => '480p', 'url' => $data['link_sd']],
+                ['idfilm' => $idfilm, 'kualitas' => '720p', 'url' => $data['link_hd']],
+            ]);
+
         
         return $idfilm;
     }

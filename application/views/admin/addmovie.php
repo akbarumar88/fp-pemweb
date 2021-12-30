@@ -27,6 +27,16 @@
         <small id="emailHelp" class="form-text text-muted">Rating Film.</small>
     </div>
     <div class="form-group">
+        <label for="exampleInputEmail1">Link Video SD</label>
+        <input required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="link_sd" value="<?= $this->input->post('link_sd') ?>" step="0.1">
+        <small id="emailHelp" class="form-text text-muted">Link Video SD Film.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Link Video HD</label>
+        <input required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="link_hd" value="<?= $this->input->post('link_hd') ?>" step="0.1">
+        <small id="emailHelp" class="form-text text-muted">Link Video HD Film.</small>
+    </div>
+    <div class="form-group">
         <label for="exampleInputEmail1">Thumbnail Film</label>
         <input required type="file" class="form-control-file" id="exampleInputEmail1" aria-describedby="emailHelp" name="gambar" accept=".jpeg,.jpg,.png">
         <small id="emailHelp" class="form-text text-muted">Gambar Thumbnail Film.</small>

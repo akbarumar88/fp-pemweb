@@ -76,6 +76,8 @@ class Admin extends CI_Controller
             'durasi' => $this->input->post('durasi'),
             'rating' => $this->input->post('rating'),
             'genre' => $this->input->post('genre'),
+            'link_sd' => $this->input->post('link_sd'),
+            'link_hd' => $this->input->post('link_hd'),
         ]);
 
         // Upload gambar
@@ -91,6 +93,13 @@ class Admin extends CI_Controller
             $genres = $this->movie->genres();
             $movie = $this->movie->find($id);
             // dd($movie);
+            $filterSD = array_filter($movie['kualitas'], function($item) { return $item['kualitas'] == '480p'; });
+            $filterHD = array_filter($movie['kualitas'], function($item) { return $item['kualitas'] == '720p'; });
+            $link_sd = !empty($filterSD) ? end($filterSD)['url'] : '';
+            $link_hd = !empty($filterHD) ? end($filterHD)['url'] : '';
+            // dd([$filterSD, $filterHD]);
+            $movie['link_sd'] = $link_sd;
+            $movie['link_hd'] = $link_hd;
             return $this->loadView('admin/editmovie', [
                 'movie' => $movie,
                 'genres' => $genres
@@ -106,6 +115,8 @@ class Admin extends CI_Controller
             'durasi' => $this->input->post('durasi'),
             'rating' => $this->input->post('rating'),
             'genre' => $this->input->post('genre'),
+            'link_sd' => $this->input->post('link_sd'),
+            'link_hd' => $this->input->post('link_hd'),
         ]);
 
         // dd($_FILES);die;

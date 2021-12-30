@@ -4,6 +4,8 @@
 
 <?php 
 
+// dd($movie);
+
 if (!$this->input->post()) {
     // Jika belum submit, ambil value dari db
     $judul = $movie['judul'];
@@ -11,6 +13,8 @@ if (!$this->input->post()) {
     $tglrilis = $movie['tglrilis'];
     $durasi = $movie['durasi'];
     $rating = $movie['rating'];
+    $link_hd = $movie['link_hd'];
+    $link_sd = $movie['link_sd'];
 } else {
     // Sudah submit, isi dengan inputan POST.
     $judul = $this->input->post('judul');
@@ -18,6 +22,8 @@ if (!$this->input->post()) {
     $tglrilis = $this->input->post('tglrilis');
     $durasi = $this->input->post('durasi');
     $rating = $this->input->post('rating');
+    $link_hd = $this->input->post('link_hd');
+    $link_sd = $this->input->post('link_sd');
 }
 
 ?>
@@ -48,6 +54,16 @@ if (!$this->input->post()) {
         <label for="exampleInputEmail1">Rating</label>
         <input min="1" max="10" required type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="rating" value="<?=  $rating ?>" step="0.1">
         <small id="emailHelp" class="form-text text-muted">Rating Film.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Link Video SD</label>
+        <input required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="link_sd" value="<?= $link_sd ?>">
+        <small id="emailHelp" class="form-text text-muted">Link Video SD Film.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Link Video HD</label>
+        <input required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="link_hd" value="<?= $link_hd ?>">
+        <small id="emailHelp" class="form-text text-muted">Link Video HD Film.</small>
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Thumbnail Film</label>
