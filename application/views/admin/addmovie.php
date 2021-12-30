@@ -95,5 +95,13 @@
             `)
             added_genres = [...added_genres, idgenre]
         })
+
+        $("#myform").submit(function(e) {
+            // Mengecek apakah sudah menambahkan genre
+            if (!added_genres.length) {
+                alert("Harap tambahkan genre terlebih dahulu.")
+                e.preventDefault()
+            }
+        })
     })
 </script>
