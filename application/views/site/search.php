@@ -5,7 +5,7 @@
         <?php foreach ($res as $movie) :  ?>
             <div class="col pr-0 mb-4">
 
-                <a href="<?= base_url('site/movie/'.$movie['id']) ?>">
+                <a href="<?= base_url('site/movie/' . $movie['id']) ?>">
                     <div class="thumbnail-wrap">
                         <!-- Durasi -->
                         <div class="durasi py-1 px-2">
@@ -33,5 +33,25 @@
 <?php else : ?>
     <p class="text-center"><i class="fas fa-search display-1"></i></p>
     <h3 class="mb-4 text-center">Maaf! Tidak ada hasil yang ditemukan untuk "<?= $q  ?>"</h3>
-    <p class="text-center">Maaf, film yang anda cari tidak ditemukan. Harap coba lagi dengan kata kunci yang lain.</p>   
+    <p class="text-center">Maaf, film yang anda cari tidak ditemukan. Harap coba lagi dengan kata kunci yang lain.</p>
 <?php endif; ?>
+
+<?php 
+
+$currentPage = !empty($this->input->get('p')) ? $this->input->get('p') : 1;
+
+?>
+
+<nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item <?= $currentPage == 1 ? 'disabled' : ''  ?>">
+            <a class="page-link">Previous</a>
+        </li>
+        <?php for ($i=1; $i<=$totalPage; $i++): ?>
+            <li class="page-item <?= $i == $currentPage ? 'disabled' : ''  ?>"><a class="page-link" href="<?= "?q=$q&p=$i" ?>"><?= $i ?></a></li>
+        <?php endfor; ?>
+        <li class="page-item <?= $currentPage == $totalPage ? 'disabled' : ''  ?>">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>

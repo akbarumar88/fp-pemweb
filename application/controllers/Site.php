@@ -33,11 +33,17 @@ class Site extends CI_Controller
     public function search()
     {
         $q = $this->input->get('q');
+        $currentPage = !empty($this->input->get('p')) ? $this->input->get('p') : 1;
         // dd($q);
-        $res = $this->movie->search($q);
+        $itemPerPage = 15;
+        $offset = ($currentPage-1) * $itemPerPage;
+        $res = $this->movie->search($q, $itemPerPage, $offset);
+        $resCount = $this->movie->searchCount($q);
+        $totalPage = ceil($resCount / $itemPerPage);
         $this->loadView('site/search', [
             'q'	=> $q,
             'res' => $res,
+            'totalPage' => $totalPage,
         ]);
     }
 
@@ -66,11 +72,17 @@ class Site extends CI_Controller
     public function search_genre($idgenre)
     {
         $genre = $this->genre->find($idgenre);
+        $currentPage = !empty($this->input->get('p')) ? $this->input->get('p') : 1;
         // dd($genre);
-        $res = $this->movie->findByGenre([$idgenre]);
+        $itemPerPage = 15;
+        $offset = ($currentPage - 1) * $itemPerPage;
+        $res = $this->movie->findByGenre([$idgenre], $itemPerPage, $offset);
+        $resCount = $this->movie->findByGenreCount([$idgenre], $itemPerPage, $offset);
+        $totalPage = ceil($resCount / $itemPerPage);
         $this->loadView('site/search_genre', [
             'genre' => $genre['genre'],
             'res' => $res,
+            'totalPage' => $totalPage,
         ]);
     }
 }

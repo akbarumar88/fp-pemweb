@@ -11,14 +11,34 @@ class MMovie extends CI_Model
     /**
      * @param
      */
-    public function search($q = '')
+    public function search($q = '', $limit=15, $offset=0)
     {
         $movies = $this
             ->db
-            ->query("SELECT * FROM film WHERE judul LIKE '%$q%'")
+            ->query("SELECT * FROM film WHERE judul LIKE '%$q%' LIMIT $limit OFFSET $offset")
             ->result_array();
         // dd($movies);
         return $movies;
+    }
+
+    public function movies_count()
+    {
+        $movies = $this
+            ->db
+            ->query("SELECT COUNT(*) as count FROM film")
+            ->row_array();
+        // dd($movies);
+        return $movies['count'];
+    }
+
+    public function searchCount($q = '')
+    {
+        $movies = $this
+            ->db
+            ->query("SELECT COUNT(*) as count FROM film WHERE judul LIKE '%$q%'")
+            ->row_array();
+        // dd($movies);
+        return $movies['count'];
     }
 
     /**
@@ -93,7 +113,25 @@ class MMovie extends CI_Model
         return ($movieByGenre);
     }
 
-    public function findByGenre($idgenres)
+    public function findByGenre($idgenres, $limit=15,$offset=0)
+    {
+        // Mengambil data film berdasarkan genrenya.
+        $movieByGenre = $this
+            ->db
+            ->distinct()
+            ->select('f.*')
+            ->from('film_genre fg')
+            ->join('film f', 'fg.idfilm=f.id')
+            ->where_in('idgenre', $idgenres)
+            ->limit($limit)
+            ->offset($offset)
+            ->get()
+            ->result_array();
+        // dd($movieByGenre);
+        return ($movieByGenre);
+    }
+
+    public function findByGenreCount($idgenres)
     {
         // Mengambil data film berdasarkan genrenya.
         $movieByGenre = $this
@@ -106,7 +144,7 @@ class MMovie extends CI_Model
             ->get()
             ->result_array();
         // dd($movieByGenre);
-        return ($movieByGenre);
+        return count($movieByGenre);
     }
 
     public function genres()

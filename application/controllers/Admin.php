@@ -27,14 +27,26 @@ class Admin extends CI_Controller
 
     public function index()
     {
+        $q = $this->input->get('q');
         $page = $this->input->get('p');
         if (empty($page)) $page = 1; // Set ke halaman 1, jika kosong
         $limit = 50;
         $offset = ($page-1) * $limit;
 
-        $movies = $this->movie->recently_added($limit, $offset);
+        if (!empty($q)) {
+            // Pencarian film
+            $movies = $this->movie->search($q, $limit, $offset);
+            $moviesCount = $this->movie->searchCount($q);
+        } else {
+            // Index
+            $movies = $this->movie->recently_added($limit, $offset);
+            $moviesCount = $this->movie->movies_count();
+        }
+
+        $totalPage = ceil($moviesCount / $limit);
         $this->loadView('admin/index', [
-            'movies' => $movies
+            'movies' => $movies,
+            'totalPage' => $totalPage
         ]);
     }
 

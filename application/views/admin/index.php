@@ -4,10 +4,15 @@
 
 <a class="btn btn-primary" href="<?= base_url('admin/addmovie') ?>" role="button"><i class="fas fa-plus"></i> Tambah Film</a>
 
+<form class="form-inline mt-3 " action="">
+    <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" value="<?= $this->input->get('q') ?>">
+    <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
+</form>
+
 <div class="mb-4"></div>
-<div class="row row-cols-lg-12 row-cols-md-12 row-cols-sm-12 row-cols-12">
+<div class="row">
     <?php foreach ($movies as $movie) :  ?>
-        <div class="col pr-0 mb-4">
+        <div class="col-lg-1 col-md-1 col-sm-2 col-2 pr-0 mb-4">
 
             <a href="<?= base_url('admin/editmovie/' . $movie['id']) ?>">
                 <div class="thumbnail-wrap">
@@ -34,3 +39,24 @@
         </div>
     <?php endforeach; ?>
 </div>
+
+<?php 
+
+$currentPage = !empty($this->input->get('p')) ? $this->input->get('p') : 1;
+
+?>
+
+
+<nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item <?= $currentPage == 1 ? 'disabled' : ''  ?>">
+            <a class="page-link">Previous</a>
+        </li>
+        <?php for ($i=1; $i<=$totalPage; $i++): ?>
+            <li class="page-item <?= $i == $currentPage ? 'disabled' : ''  ?>"><a class="page-link" href="<?= "?p=$i" ?>"><?= $i ?></a></li>
+        <?php endfor; ?>
+        <li class="page-item <?= $currentPage == $totalPage ? 'disabled' : ''  ?>">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
