@@ -172,4 +172,12 @@ class MMovie extends CI_Model
         
         return $idfilm;
     }
+
+    public function delete($id)
+    {
+        // Hapus genrenya dulu
+        $this->db->delete('film_genre', ['idfilm' => $id]);
+        // Hapus filmnya
+        $this->db->delete('film', ['id' => $id]);
+    }
 }

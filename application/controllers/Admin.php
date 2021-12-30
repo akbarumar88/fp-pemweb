@@ -121,4 +121,11 @@ class Admin extends CI_Controller
         flash('succadd', "Berhasil mengubah film ".$this->input->post('judul'), 'success');
         redirect('admin/index');
     }
+
+    public function deletemovie($id)
+    {
+        $this->movie->delete($id);
+        flash('succadd', "Film berhasil dihapus.", 'success');
+        redirect('admin/index');
+    }
 }

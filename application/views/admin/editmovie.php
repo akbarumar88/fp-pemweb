@@ -1,4 +1,6 @@
-<h3 class="mb-4">Ubah Film</h3>
+<a href="<?= base_url("admin/deletemovie/{$movie['id']}") ?>" onclick="return confirm('Apakah anda yakin ingin menghapus film ini?')" class="btn btn-danger mb-2"><i class="fas fa-trash"></i> Hapus Film</a>
+
+<h3 class="mb-4 mt-2">Ubah Film</h3>
 
 <?php 
 
