@@ -1,3 +1,4 @@
+<?php flash('succadd') ?>
 
 <h3 class="mb-4">Daftar Film MOOVEE</h3>
 
@@ -26,9 +27,9 @@
                     <div class="overlay">
                         <i style="font-size: 48px;color:white" class="fas fa-play-circle"></i>
                     </div>
-                    <img width="100%" style="height:300px !important;padding: 0" src="<?= base_url('img/thumbnails/' . $movie['id'] . '.jpg') ?>" class="img-thumbnail rounded" alt="...">
+                    <img width="100%" style="height:150px !important;padding: 0" src="<?= base_url('img/thumbnails/' . $movie['id'] . '.jpg') ?>" class="img-thumbnail rounded" alt="...">
                 </div>
-                <h6 class="text-center mt-2"><?= limit($movie['judul'], 7) ?></h6>
+                <p class="text-center mt-2"><?= limit($movie['judul'], 4) ?></p>
             </a>
         </div>
     <?php endforeach; ?>

@@ -117,4 +117,30 @@ class MMovie extends CI_Model
             ->result_array();
         return $genres;
     }
+
+    public function add($data)
+    {
+        // Insert data film
+        $this
+            ->db
+            ->insert('film', [
+                'judul' => $data['judul'],
+                'sinopsis' => $data['sinopsis'],
+                'tglrilis' => $data['tglrilis'],
+                'durasi' => $data['durasi'],
+                'rating' => $data['rating'],
+            ]);
+        $idfilm = $this->db->insert_id();
+        
+        // Insert data genre
+        $data_genre = [];
+        foreach ($data['genre'] as $i => $idgenre) {
+            $data_genre[] = ['idfilm' => $idfilm, 'idgenre' => $idgenre];
+        }
+        $this
+            ->db
+            ->insert_batch("film_genre", $data_genre);
+        
+        return $idfilm;
+    }
 }

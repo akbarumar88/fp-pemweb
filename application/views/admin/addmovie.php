@@ -8,7 +8,7 @@
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Sinopsis</label>
-        <textarea required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="sinopsis" value="<?= $this->input->post('sinopsis') ?>"></textarea>
+        <textarea rows="6" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="sinopsis" value="<?= $this->input->post('sinopsis') ?>"></textarea>
         <small id="emailHelp" class="form-text text-muted">Masukkan sinopsis film.</small>
     </div>
     <div class="form-group">

@@ -67,6 +67,22 @@ class Admin extends CI_Controller
                 'genres' => $genres
             ]);
         }
-        dd($_POST);
+        // Tambah Film
+        // dd($_POST);
+        $idfilm = $this->movie->add([
+            'judul' => $this->input->post('judul'),
+            'sinopsis' => $this->input->post('sinopsis'),
+            'tglrilis' => $this->input->post('tglrilis'),
+            'durasi' => $this->input->post('durasi'),
+            'rating' => $this->input->post('rating'),
+            'genre' => $this->input->post('genre'),
+        ]);
+
+        // Upload gambar
+        $tmp_name = $_FILES['gambar']['tmp_name'];
+        move_uploaded_file($tmp_name, "img/thumbnails/$idfilm.jpg"); // Nama file diganti dengan id filmnya
+
+        flash('succadd', "Berhasil menambahkan film ".$this->input->post('judul'), 'success');
+        redirect('admin/index');
     }
 }
