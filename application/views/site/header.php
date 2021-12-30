@@ -59,6 +59,9 @@
                     <li class="nav-item">
                         <a href="<?= base_url('auth/logout') ?>" class="nav-link">Logout</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('site/history') ?>" class="nav-link">Histori</a>
+                    </li>
 
                     <!-- Menu khusus untuk Admin Web MOOVEE. -->
                     <?php if ($this->session->role == 1) : ?>

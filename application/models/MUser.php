@@ -49,4 +49,36 @@ class MUser extends CI_Model
             'message' => 'Berhasil register, silakan melakukan login untuk masuk ke akun anda.'
         ];
     }
+
+    public function addhistory($data)
+    {
+        $dataHis = $this->db->get_where('user_histori', [
+            'idfilm' => $data['idfilm'],
+            'iduser' => $data['iduser'],
+            'tgl' => date('Y-m-d'),
+        ])->row_array();
+        if (empty($dataHis)) {
+            $this->db->insert("user_histori", [
+                'idfilm' => $data['idfilm'],
+                'iduser' => $data['iduser'],
+                'tgl' => date('Y-m-d'),
+            ]);
+        }
+    }
+
+    public function history($id)
+    {
+        $history = $this->db
+            ->select('f.*')
+            ->from('user_histori uh')
+            ->join('film f', 'uh.idfilm=f.id')
+            ->where([
+                'iduser' => $id,
+                'tgl' => date('Y-m-d'),
+            ])
+            ->order_by('tgl', 'DESC')
+            ->get()
+            ->result_array();
+        return $history;
+    }
 }

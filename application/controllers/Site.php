@@ -7,6 +7,7 @@ class Site extends CI_Controller
         parent::__construct();
         $this->load->model('MMovie', 'movie');
         $this->load->model('MGenre', 'genre');
+        $this->load->model('MUser', 'user');
     }
 
     private function loadView($mainView, $data=[])
@@ -63,6 +64,10 @@ class Site extends CI_Controller
         // dd($res);
         $related_movies = $this->movie->related($id);
         // dd($res);
+        if ($this->session->has_userdata('id')) {
+            // Tambah histori film user
+            $this->user->addhistory(['iduser' => $this->session->id, 'idfilm' => $id]);
+        }
         $this->loadView('site/movie', [
             'movie'	=> $res,
             'related_movies' => $related_movies,
@@ -83,6 +88,14 @@ class Site extends CI_Controller
             'genre' => $genre['genre'],
             'res' => $res,
             'totalPage' => $totalPage,
+        ]);
+    }
+
+    public function history()
+    {
+        $history = $this->user->history($this->session->id);
+        $this->loadView('site/history', [
+            'history' => $history
         ]);
     }
 }

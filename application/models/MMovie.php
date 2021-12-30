@@ -15,7 +15,7 @@ class MMovie extends CI_Model
     {
         $movies = $this
             ->db
-            ->query("SELECT * FROM film WHERE judul LIKE '%$q%' LIMIT $limit OFFSET $offset")
+            ->query("SELECT * FROM film WHERE judul LIKE '%$q%' ORDER BY judul ASC LIMIT $limit OFFSET $offset")
             ->result_array();
         // dd($movies);
         return $movies;
@@ -107,6 +107,7 @@ class MMovie extends CI_Model
             ->join('film f', 'fg.idfilm=f.id')
             ->where_in('idgenre', $idgenres) //Mencari dengan genre terkait
             ->where_not_in('f.id', [$id]) //Film saat ini tidak ikut ter-select
+            ->limit(10)
             ->get()
             ->result_array();
         // dd($movieByGenre);
