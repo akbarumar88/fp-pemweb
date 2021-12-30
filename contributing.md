@@ -107,17 +107,45 @@ Fungsi CSS dalam aplikasi web utama dan admin ini yaitu untuk mengatur style dan
 5. Dapat menambah, mengubah, serta menghapus film.
 
 **FITUR-FITUR YANG DITAWARKAN BESERTA SCREENSHOT PROGRAM**
+
 a.	Menampilkan Film-film Terbaru dan film yang baru saja ditambahkan
+![gambar1](https://user-images.githubusercontent.com/96807815/147767192-4574e213-8a9e-41a6-ac39-913ea096f99a.png)
 
 b.	Pencarian Film berdasarkan Keyword
+![pencarian](https://user-images.githubusercontent.com/96807815/147767568-436e0146-2739-4136-9aa4-fdc4bb38f5e1.png)
 
 c.	Pencarian Film berdasarkan Genre Film
+![pencarian genre](https://user-images.githubusercontent.com/96807815/147767724-a655e954-928e-4497-8ae1-a6b06650c06e.png)
 
 d.	Opsi kualitas film (kualitas HD hanya tersedia untuk user yang sudah logged in)
+![opsi kualitas](https://user-images.githubusercontent.com/96807815/147767811-57c99da0-0b1d-4559-8246-acab303b402a.png)
 
 e.	Film Terkait
+![film terkait](https://user-images.githubusercontent.com/96807815/147767977-d541ddba-45cf-4ec3-be9a-9d7879128f4b.png)
 
 7.	KODE-KODE INTI BESERTA PENJELASANNYA
+
 a.	Site Controller
+![image](https://user-images.githubusercontent.com/96807815/147768347-df43eb9d-429b-4e42-871c-1c0cc2b12d21.png)
+Ini merupakan controller dari Halaman Utama MOOVEE. Disini menghandle halaman seperti indeks, pencarian keyword, pencarian genre, detail Film dsb.
+
+b.	Model Movie
+![model movie](https://user-images.githubusercontent.com/96807815/147768824-8adfe9a5-589c-451f-8efa-9f3b75ec222c.png)
+Berikut merupakan Model Movie. Model yang bertugas menghandle kueri-kueri seputar Film seperti Film index, film terbaru, detail film, film terkait dsb.
+
+c.	Auth Controller
+![auth controller](https://user-images.githubusercontent.com/96807815/147768943-fe877a48-46a1-47ee-9fef-009918c17cb7.png)
+Merupakan controller yang bertugas untuk menangani masalah autentikasi yaitu login dan register. Fungsionalitas login dan register ada pada controller ini.
+
+d.	View index website MOOVEE
+![view index](https://user-images.githubusercontent.com/96807815/147769069-c068d48e-e8be-4fbd-a3ed-f1acd0982b50.png)
+Merupakan view yang menghandle tampilan awal website MOOVEE. Ini untuk menampilkan film-film terbaru serta film-film yang baru ditambahkan
+
+
+e.	Model User
+![model user](https://user-images.githubusercontent.com/96807815/147769356-ffaae45f-a7b8-4636-a438-eb3e459e98a1.png)
+Model yang bertugas untuk menangani kueri-kueri seputar User. Fungsionalitas login dan register juga ada di dalam Model User ini.
+
+
 
 
