@@ -49,7 +49,40 @@ class Auth extends CI_Controller
             'nama_lengkap' => $user['nama_lengkap'],
             'role' => $user['role'],
         ]);
+        flash('welcome', "Selamat Datang {$user['nama_lengkap']}! Nikmati Film-film menarik hanya di MOOVEE!", 'success');
         redirect('site/index');
+    }
+
+    public function register()
+    {
+        // Jika user telah login, maka arahkan ke halaman index.
+        if ($this->session->has_userdata('id')) {
+            return redirect('site/index');
+        }
+
+        if (!$this->input->post()) {
+            // Render view register user.
+            return $this->loadView('auth/register');
+        }
+        // Jika user sudah submit form.
+        $uname = $this->input->post('username');
+        $nama_lengkap = $this->input->post('nama_lengkap');
+        $pass = $this->input->post('pass');
+        // dd([$uname,$pass]);
+        $res = $this->user->register([
+            'username' => $uname,
+            'pass' => $pass,
+            'nama_lengkap' => $nama_lengkap,
+        ]);
+        if ($res['status'] == 0) {
+            // Terjadi error
+            flash('errregister', $res['message'], 'warning');
+            return $this->loadView('auth/register');
+        }
+        // dd($user);
+        // Register berhasil, redirect ke auth/login
+        flash('succregister', $res['message'], 'success'); // Set flash message berhasil.
+        redirect('auth/login');
     }
 
     public function logout()

@@ -1,8 +1,11 @@
-<?= flash('errlogin') ?>
-<?= flash('succregister') ?>
-
+<?= flash('errregister') ?>
 
 <form method="POST">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nama Lengkap</label>
+        <input required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nama_lengkap" value="<?= $this->input->post('nama_lengkap') ?>">
+        <small id="emailHelp" class="form-text text-muted">Masukkan username anda.</small>
+    </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Username</label>
         <input required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" value="<?= $this->input->post('username') ?>">

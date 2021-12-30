@@ -1,4 +1,5 @@
-<?php // dd($_SESSION) ?>
+<?php //echo md5('admin'); ?>
+<?php flash('welcome') ?>
 
 <h3 class="mb-4">Film Terbaru</h3>
 

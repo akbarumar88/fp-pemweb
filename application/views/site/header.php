@@ -45,6 +45,9 @@
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
+                        <a href="#" class="nav-link"><?= $this->session->nama_lengkap ?></a>
+                    </li>
+                    <li class="nav-item">
                         <a href="<?= base_url('auth/logout') ?>" class="nav-link">Logout</a>
                     </li>
                 <?php endif; ?>
