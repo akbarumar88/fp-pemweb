@@ -85,4 +85,40 @@ class Admin extends CI_Controller
         flash('succadd', "Berhasil menambahkan film ".$this->input->post('judul'), 'success');
         redirect('admin/index');
     }
+
+    public function editmovie($id) {
+        if (!$this->input->post()) {
+            $genres = $this->movie->genres();
+            $movie = $this->movie->find($id);
+            // dd($movie);
+            return $this->loadView('admin/editmovie', [
+                'movie' => $movie,
+                'genres' => $genres
+            ]);
+        }
+        // Update Film
+        // dd($_POST);
+        $idfilm = $this->movie->update([
+            'id' => $this->input->post('id'),
+            'judul' => $this->input->post('judul'),
+            'sinopsis' => $this->input->post('sinopsis'),
+            'tglrilis' => $this->input->post('tglrilis'),
+            'durasi' => $this->input->post('durasi'),
+            'rating' => $this->input->post('rating'),
+            'genre' => $this->input->post('genre'),
+        ]);
+
+        // dd($_FILES);die;
+        if (!empty($_FILES['gambar'])) {
+            // Hapus gambar lama terlebih dahulu.
+            $resUnlink = unlink("img/thumbnails/$idfilm.jpg");
+            // dd($resUnlink);die;
+            // Upload gambar, jika diinput
+            $tmp_name = $_FILES['gambar']['tmp_name'];
+            move_uploaded_file($tmp_name, "img/thumbnails/$idfilm.jpg"); // Nama file diganti dengan id filmnya
+        }
+
+        flash('succadd', "Berhasil mengubah film ".$this->input->post('judul'), 'success');
+        redirect('admin/index');
+    }
 }

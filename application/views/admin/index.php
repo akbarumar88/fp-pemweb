@@ -9,7 +9,7 @@
     <?php foreach ($movies as $movie) :  ?>
         <div class="col pr-0 mb-4">
 
-            <a href="<?= base_url('admin/movie/' . $movie['id']) ?>">
+            <a href="<?= base_url('admin/editmovie/' . $movie['id']) ?>">
                 <div class="thumbnail-wrap">
                     <!-- Durasi -->
                     <div class="durasi py-1 px-2">
