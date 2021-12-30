@@ -28,34 +28,45 @@
                     <div class="dropdown-menu">
                         <div class="" style="display:flex;flex-wrap:wrap;width:600px">
                             <?php foreach ($genres as $genre) : ?>
-                                <a style="width:25%" class="dropdown-item" href="<?= base_url('site/search_genre/'.$genre['id']) ?>"><?= $genre['genre'] ?></a>
+                                <a style="width:25%" class="dropdown-item" href="<?= base_url('site/search_genre/' . $genre['id']) ?>"><?= $genre['genre'] ?></a>
                             <?php endforeach; ?>
                         </div>
                         <div class="dropdown-divider"></div>
                     </div>
                 </li>
-
-                <?php if (!$this->session->has_userdata('id')): ?>
-                    <li class="nav-item">
-                        <a href="<?= base_url('auth/login') ?>" class="nav-link">Login</a>
-                    </li>
-    
-                    <li class="nav-item">
-                        <a href="<?= base_url('auth/register') ?>" class="nav-link">Register</a>
-                    </li>
-                <?php else: ?>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><?= $this->session->nama_lengkap ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?= base_url('auth/logout') ?>" class="nav-link">Logout</a>
-                    </li>
-                <?php endif; ?>
             </ul>
+
             <form class="form-inline my-2 my-lg-0" action="<?= base_url('site/search')  ?>">
                 <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" value="<?= $this->input->get('q') ?>" required>
                 <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
             </form>
+
+            <ul class="navbar-nav ml-auto">
+                <?php if (!$this->session->has_userdata('id')) : ?>
+                    <li class="nav-item">
+                        <a href="<?= base_url('auth/login') ?>" class="nav-link">Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="<?= base_url('auth/register') ?>" class="nav-link">Register</a>
+                    </li>
+                <?php else : ?>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link "><?= $this->session->nama_lengkap ?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('auth/logout') ?>" class="nav-link">Logout</a>
+                    </li>
+
+                    <!-- Menu khusus untuk Admin Web MOOVEE. -->
+                    <?php if ($this->session->role == 1) : ?>
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin/index') ?>" class="nav-link">Admin Page</a>
+                        </li>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </ul>
+            
         </div>
     </nav>
 
