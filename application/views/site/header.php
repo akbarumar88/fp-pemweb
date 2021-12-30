@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/bootstrap-select.min.css') ?>">
     <link rel="shortcut icon" href="<?= base_url('img/movie-icon-png.jpg') ?>" type="image/x-icon">
     <title>MOOVEE</title>
     <!-- Font Awesome Script -->
     <script src="https://kit.fontawesome.com/bc14fa0285.js" crossorigin="anonymous"></script>
+    <script src="<?= base_url('js/jquery-3.6.0.min.js') ?>"></script>
 </head>
 
 <body>

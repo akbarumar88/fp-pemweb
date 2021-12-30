@@ -50,7 +50,10 @@ class Auth extends CI_Controller
             'role' => $user['role'],
         ]);
         flash('welcome', "Selamat Datang {$user['nama_lengkap']}! Nikmati Film-film menarik hanya di MOOVEE!", 'success');
-        redirect('site/index');
+
+        // Jika user admin maka langsung diarahkan ke web admin, jika user biasa maka ke Home.
+        $redirect_route = $user['role'] == 1 ? 'admin/index' : 'site/index';
+        redirect($redirect_route);
     }
 
     public function register()

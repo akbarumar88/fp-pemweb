@@ -24,21 +24,21 @@ class MMovie extends CI_Model
     /**
      * @param
      */
-    public function latest_aired()
+    public function latest_aired($limit=15, $offset=0)
     {
         $movies = $this
             ->db
-            ->query("SELECT * FROM film ORDER BY tglrilis DESC LIMIT 15")
+            ->query("SELECT * FROM film ORDER BY tglrilis DESC LIMIT $limit OFFSET $offset")
             ->result_array();
         // dd($movies);
         return $movies;
     }
 
-    public function recently_added()
+    public function recently_added($limit=15, $offset=0)
     {
         $movies = $this
             ->db
-            ->query("SELECT * FROM film ORDER BY id DESC LIMIT 15")
+            ->query("SELECT * FROM film ORDER BY id DESC LIMIT $limit OFFSET $offset")
             ->result_array();
         // dd($movies);
         return $movies;
