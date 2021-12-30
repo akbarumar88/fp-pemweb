@@ -132,7 +132,7 @@ class Admin extends CI_Controller
         ]);
 
         // dd($_FILES);die;
-        if (!empty($_FILES['gambar'])) {
+        if (!empty($_FILES['gambar']['tmp_name'])) {
             // Hapus gambar lama terlebih dahulu.
             $resUnlink = unlink("img/thumbnails/$idfilm.jpg");
             // dd($resUnlink);die;

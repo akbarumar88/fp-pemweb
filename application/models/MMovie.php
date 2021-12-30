@@ -124,6 +124,7 @@ class MMovie extends CI_Model
             ->from('film_genre fg')
             ->join('film f', 'fg.idfilm=f.id')
             ->where_in('idgenre', $idgenres)
+            ->order_by('judul', 'ASC')
             ->limit($limit)
             ->offset($offset)
             ->get()
@@ -234,6 +235,11 @@ class MMovie extends CI_Model
     {
         // Hapus genrenya dulu
         $this->db->delete('film_genre', ['idfilm' => $id]);
+        // Hapus kualitasnya
+        $this->db->delete('film_kualitas', ['idfilm' => $id]);
+        // Hapus data histori film
+        $this->db->delete('user_histori', ['idfilm' => $id]);
+
         // Hapus filmnya
         $this->db->delete('film', ['id' => $id]);
     }

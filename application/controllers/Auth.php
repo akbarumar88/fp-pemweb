@@ -28,10 +28,10 @@ class Auth extends CI_Controller
         }
 
         if (!$this->input->post()) {
-            // Render view login user.
+            // Menampilkan view login user.
             return $this->loadView('auth/login');
         }
-        // Jika user sudah submit form.
+        // Jika user sudah submit form, maka melakukan login.
         $uname = $this->input->post('username');
         $pass = $this->input->post('pass');
         // dd([$uname,$pass]);
@@ -51,7 +51,7 @@ class Auth extends CI_Controller
         ]);
         flash('welcome', "Selamat Datang {$user['nama_lengkap']}! Nikmati Film-film menarik hanya di MOOVEE!", 'success');
 
-        // Jika user admin maka langsung diarahkan ke web admin, jika user biasa maka ke Home.
+        // Jika user admin maka langsung diarahkan ke web admin, jika user biasa maka diarahkan ke Home.
         $redirect_route = $user['role'] == 1 ? 'admin/index' : 'site/index';
         redirect($redirect_route);
     }
@@ -64,10 +64,10 @@ class Auth extends CI_Controller
         }
 
         if (!$this->input->post()) {
-            // Render view register user.
+            // Menampilkan view register user.
             return $this->loadView('auth/register');
         }
-        // Jika user sudah submit form.
+        // Jika user sudah submit form., maka melakukan register
         $uname = $this->input->post('username');
         $nama_lengkap = $this->input->post('nama_lengkap');
         $pass = $this->input->post('pass');
@@ -78,7 +78,7 @@ class Auth extends CI_Controller
             'nama_lengkap' => $nama_lengkap,
         ]);
         if ($res['status'] == 0) {
-            // Terjadi error
+            // Jika Terjadi error saat register, menampilkan message error
             flash('errregister', $res['message'], 'warning');
             return $this->loadView('auth/register');
         }

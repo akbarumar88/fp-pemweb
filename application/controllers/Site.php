@@ -23,8 +23,9 @@ class Site extends CI_Controller
 
     public function index()
     {
-        $latest_aired = $this->movie->latest_aired();
-        $recently_added = $this->movie->recently_added();
+        $latest_aired = $this->movie->latest_aired(); // Mengambil data film urut berdasarkan tgl rilis.
+        $recently_added = $this->movie->recently_added(); // Mengambil data film yang baru ditambahkan.
+        // Menampilkan view index dengan mempassing 2 data film tadi.
         $this->loadView('site/index', [
             'latest_aired' => $latest_aired,
             'recently_added' => $recently_added,
@@ -33,14 +34,17 @@ class Site extends CI_Controller
 
     public function search()
     {
-        $q = $this->input->get('q');
-        $currentPage = !empty($this->input->get('p')) ? $this->input->get('p') : 1;
+        $q = $this->input->get('q'); // Keyword yang diinputkan user
+        // Mengambil halaman saat ini. halaman ke berapa sekarang.
+        $currentPage = !empty($this->input->get('p')) ? $this->input->get('p') : 1; 
         // dd($q);
-        $itemPerPage = 15;
+        $itemPerPage = 15; // Jumlah item per halaman
         $offset = ($currentPage-1) * $itemPerPage;
-        $res = $this->movie->search($q, $itemPerPage, $offset);
-        $resCount = $this->movie->searchCount($q);
-        $totalPage = ceil($resCount / $itemPerPage);
+        $res = $this->movie->search($q, $itemPerPage, $offset); // Mendapatkan data film berdasarkan cari keyword
+        $resCount = $this->movie->searchCount($q); // Mendapatkan count data untuk paging
+        $totalPage = ceil($resCount / $itemPerPage); // Menghitung total halaman
+
+        // Menampilkan view search dan memapssing data-data yg diperlukan.
         $this->loadView('site/search', [
             'q'	=> $q,
             'res' => $res,
@@ -77,13 +81,16 @@ class Site extends CI_Controller
     public function search_genre($idgenre)
     {
         $genre = $this->genre->find($idgenre);
+        // Mengambil halaman saat ini. halaman ke berapa sekarang.
         $currentPage = !empty($this->input->get('p')) ? $this->input->get('p') : 1;
         // dd($genre);
-        $itemPerPage = 15;
+        $itemPerPage = 15; // Jumlah item per halaman
         $offset = ($currentPage - 1) * $itemPerPage;
-        $res = $this->movie->findByGenre([$idgenre], $itemPerPage, $offset);
-        $resCount = $this->movie->findByGenreCount([$idgenre], $itemPerPage, $offset);
-        $totalPage = ceil($resCount / $itemPerPage);
+        $res = $this->movie->findByGenre([$idgenre], $itemPerPage, $offset); // Mendapatkan data film berdasarkan genre
+        $resCount = $this->movie->findByGenreCount([$idgenre], $itemPerPage, $offset); // Mendapatkan count data untuk paging
+        $totalPage = ceil($resCount / $itemPerPage); // Mendapatkan total page
+
+        // Menampilkan view search dan memapssing data-data yg diperlukan.
         $this->loadView('site/search_genre', [
             'genre' => $genre['genre'],
             'res' => $res,
