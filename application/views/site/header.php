@@ -38,7 +38,7 @@
                 </li>
             </ul>
 
-            <form class="form-inline my-2 my-lg-0" action="<?= base_url('site/search')  ?>" style="position: relative;">
+            <form class="form-inline my-2 my-lg-0" action="<?= base_url('site/search')  ?>" style="position: relative;" autocomplete="off">
                 <input class="form-control mr-sm-2" type="text" id="searchbar" name="q" placeholder="Search" value="<?= $this->input->get('q') ?>" required>
                 <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
 
