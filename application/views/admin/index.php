@@ -17,17 +17,17 @@
             <a href="<?= base_url('admin/editmovie/' . $movie['id']) ?>">
                 <div class="thumbnail-wrap">
                     <!-- Durasi -->
-                    <div class="durasi py-1 px-2">
+                    <div class="durasi py-1 px-2" style="font-size: 10px;">
                         <i class="fas fa-clock"></i>
                         <b><?= $movie['durasi'] ?>m</b>
                     </div>
                     <!-- Rating -->
-                    <div class="rating py-1 px-2">
+                    <div class="rating py-1 px-2" style="font-size: 10px;">
                         <i class="fas fa-star"></i>
                         <b><?= $movie['rating'] ?></b>
                     </div>
                     <!-- HD Badge -->
-                    <div class="hd py-1 px-2"><b>HD</b></div>
+                    <div class="hd py-1 px-2" style="font-size: 10px;"><b>HD</b></div>
                     <!-- Image Overlay -->
                     <div class="overlay">
                         <i style="font-size: 48px;color:white" class="fas fa-play-circle"></i>
