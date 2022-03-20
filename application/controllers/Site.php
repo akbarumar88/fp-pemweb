@@ -8,6 +8,7 @@ class Site extends CI_Controller
         $this->load->model('MMovie', 'movie');
         $this->load->model('MGenre', 'genre');
         $this->load->model('MUser', 'user');
+        $this->load->model('MDiagram', 'diagram');
     }
 
     private function loadView($mainView, $data=[])
@@ -115,5 +116,14 @@ class Site extends CI_Controller
     public function indodax()
     {
         $this->loadView('site/indodax', []);
+    }
+
+    public function previewDiagram()
+    {
+        $dataSample = $this->diagram->getSample();
+        $this->loadView('site/sample-diagram', [
+            'dataSample' => $dataSample
+        ]);
+        // dd($dataSample);
     }
 }
