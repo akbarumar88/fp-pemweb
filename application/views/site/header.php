@@ -36,6 +36,10 @@
                         <div class="dropdown-divider"></div>
                     </div>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('site/indodax') ?>" >Data Indodax</a>
+                </li>
             </ul>
 
             <form class="form-inline my-2 my-lg-0" action="<?= base_url('site/search')  ?>" style="position: relative;" autocomplete="off">
@@ -125,5 +129,7 @@
             })
         })
     </script>
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Opening Tag Container -->
     <div class="container pt-5 pb-5">

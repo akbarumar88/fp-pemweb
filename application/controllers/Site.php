@@ -111,4 +111,9 @@ class Site extends CI_Controller
         $res = $this->movie->search($q, 6, 0); // Mendapatkan data film berdasarkan cari keyword
         echo json_encode($res);
     }
+
+    public function indodax()
+    {
+        $this->loadView('site/indodax', []);
+    }
 }
